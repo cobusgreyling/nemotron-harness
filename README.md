@@ -12,25 +12,25 @@ The model is a stateless function call. The harness is everything that makes it 
   ┌──────────────────────────────────────────────────────────────┐
   │                    User Input                                │
   │  Text / Audio / Video / Image                                │
-  └──────────────────────────┬───────────��───────────────────────┘
+  └──────────────────────────┬───────────────────────────────────┘
                              │
                              ▼
-  ┌─���───────────────────���────────────────────────────────────────┐
+  ┌──────────────────────────────────────────────────────────────┐
   │                   Nemotron Harness                           │
   │                                                              │
-  │  ┌─────────────┐  ┌────��─────────┐  ┌───────────────────┐   │
-  │  │  Compaction  │  │  Doom-Loop   │  │  System Reminder  ��   │
-  │  │  (5-stage)   │  │  Detection   │  │  Injection        │   │
-  │  └──────┬───────┘  └──────┬───────┘  └────────┬──────────┘   │
-  │         │                 │                    │              │
-  │         └─────────────────┼────────────────────┘              │
+  │  ┌──────────────┐  ┌──────────────┐  ┌────────────────────┐  │
+  │  │  Compaction  │  │  Doom-Loop   │  │  System Reminder   │  │
+  │  │  (5-stage)   │  │  Detection   │  │  Injection         │  │
+  │  └──────┬───────┘  └──────┬───────┘  └─────────┬──────────┘  │
+  │         │                 │                    │             │
+  │         └─────────────────┼────────────────────┘             │
   │                           │                                  │
   │              ┌────────────▼────────────┐                     │
   │              │   Nemotron 3 Nano Omni  │                     │
   │              │   (modality-aware call) │                     │
-  │              └────────────┬─��──────────┘                     │
+  │              └────────────┬────────────┘                     │
   │                           │                                  │
-  │              ┌���───────────▼────────────┐                     │
+  │              ┌────────────▼────────────┐                     │
   │              │    Tool Registry        │                     │
   │              │    (execute + feed back)│                     │
   │              └────────────┬────────────┘                     │
@@ -38,14 +38,14 @@ The model is a stateless function call. The harness is everything that makes it 
   │              ┌────────────▼────────────┐                     │
   │              │  Completion Checker     │                     │
   │              │  (premature exit guard) │                     │
-  │              └──────��──────────────────┘                     │
+  │              └─────────────────────────┘                     │
   │                                                              │
-  └──��───────────────────────┬─��───────────────────────────────���─┘
+  └──────────────────────────────────────────────────────────────┘
                              │
                              ▼
                    ┌────────────────────┐
                    │  Structured Output │
-                   └─────���──────────────┘
+                   └────────────────────┘
 ```
 
 ## Quick Start
@@ -88,10 +88,10 @@ nemotron-harness/
 │   ├── __init__.py          # Public API
 │   ├── client.py            # NVIDIA NIM client setup
 │   ├── stream.py            # Streaming consumer + accumulator
-���   ├── harness.py           # Core ReAct loop with all harness patterns
+│   ├── harness.py           # Core ReAct loop with all harness patterns
 │   ├── tools.py             # Generic tool registry + execution
 │   ├── compaction.py        # 5-stage adaptive context compaction
-│   ���── reminders.py         # System reminder injection
+│   ├── reminders.py         # System reminder injection
 │   ├── modalities/
 │   │   ├── audio.py         # Audio encoding (wav, mp3, ogg, flac, m4a)
 │   │   ├── video.py         # Video encoding (mp4, mov, avi, webm)
@@ -180,13 +180,13 @@ Nemotron 3 Nano Omni has specific inference requirements per modality:
 
 ```
 Modality     enable_thinking    temperature    Notes
-────��────────────────────────────────────────────────────────
+────────────────────────────────────────────────────────────
 Text         true / false       0.6            Reasoning budget optional
 Image        true / false       0.6            Full reasoning supported
 Audio        false (required)   0 (required)   No reasoning on audio
 Video        false (required)   0 (required)   use_audio_in_video flag
 Tool call    true / false       0.6            Works with all modalities
-─────────���────────────────────────────���──────────────────────
+───────────────────────────────────────────────────────────
 ```
 
 The harness enforces these automatically via the `modality` parameter.
