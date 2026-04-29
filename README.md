@@ -1,3 +1,7 @@
+<p align="center">
+  <img src="header.jpg" alt="Nemotron AI Agent Harness" width="100%">
+</p>
+
 # Nemotron Harness
 
 Runtime orchestration framework for **NVIDIA Nemotron 3 Nano Omni** (30B-A3B) — the single model that processes text, images, audio, and video natively.
